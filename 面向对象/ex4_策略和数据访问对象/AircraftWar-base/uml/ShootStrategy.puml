@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class AbstractAircraft
+{
+	# axHp:int
+    # hp:int
+    # direction:int
+    - shootStrategy:ShootStrategy
+    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + decreaseHp(int decrease)
+    + getHp():int
+    + shoot():List<BaseBullet>
+    + getdirection():int
+    + setShootStrategy(ShootStrategy shootStrategy)
+ }
+
+
+interface ShootStrategy
+{
+  +doshoot(AbstractAircraft abstractAircraft):List<BaseBullet>
+}
+
+class RandomShootStrategy
+{
+  -shootNum:int
+  -power:int
+  +doshoot(AbstractAircraft abstractAircraft):List<BaseBullet>
+}
+
+class StraightShootStrategy
+{
+  -shootNum:int
+  -power:int
+  +doshoot(AbstractAircraft abstractAircraft):List<BaseBullet>
+}
+
+class Game{
+}
+
+Game ..> AbstractAircraft
+AbstractAircraft o-down-> ShootStrategy
+StraightShootStrategy .up.|> ShootStrategy
+RandomShootStrategy .up.|> ShootStrategy
+
+
+@enduml

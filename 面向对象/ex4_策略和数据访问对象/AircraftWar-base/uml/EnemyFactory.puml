@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface EnemyFactory{
++createEnemy():AbstractEnemy
+}
+class BossFactory{
++createEnemy():AbstractEnemy
+}
+
+class EliteFactory{
+ +createEnemy():AbstractEnemy
+}
+class MobFactory{
+ +createEnemy():AbstractEnemy
+}
+
+abstract  class AbstractEnemy{
+- getPropStrategy:GetPropStrategy
++ AbstractEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
++ shoot():List<BaseBullet>
++ getProp():AbstractProp
+}
+
+class BossEnemy{
++ BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
+}
+
+class EliteEnemy{
+- seed:double
++ EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
++ shoot():List<BaseBullet>
++ forward()
+}
+
+
+class MobEnemy{
++ MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
++ forward()
++ shoot():List<BaseBullet>
++ getProp():AbstractProp
+}
+
+EnemyFactoryDemo .up.> EnemyFactory
+EnemyFactoryDemo .down.> AbstractEnemy
+MobFactory ..|> EnemyFactory
+EliteFactory ..|> EnemyFactory
+BossFactory ..|>  EnemyFactory
+
+AbstractEnemy  <|-- MobEnemy
+AbstractEnemy  <|-- EliteEnemy
+AbstractEnemy <|-- BossEnemy
+
+MobFactory ..> MobEnemy : create
+EliteFactory ..> EliteEnemy : create
+BossFactory ..> EliteEnemy:create
+@enduml
