@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1665327476 source:e:\rsa\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+
+1665923226 source:f:\rsa\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+
